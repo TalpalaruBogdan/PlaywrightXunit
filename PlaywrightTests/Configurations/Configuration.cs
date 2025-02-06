@@ -1,6 +1,5 @@
 namespace PlaywrightTests.Configurations;
 
-// Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
 public class BrowserConfig
 {
      public string Browser { get; set; }
@@ -15,6 +14,7 @@ public class TestData
      public string BaseUrl { get; set; }
 }
 
+// ConfigurationBase config = JsonConvert.DeserializeObject<ConfigurationBase>(myJsonResponse);
 public class ConfigurationBase
 {
      public BrowserConfig BrowserConfig { get; set; }
