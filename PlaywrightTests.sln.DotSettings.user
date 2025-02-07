@@ -7,5 +7,6 @@
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::47A73FC6-C811-404D-86DB-A2BA474FC76E::net8.0::PlaywrightTests.SearchFeatureTests.ShouldDisplayResultsForValidSearch&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::47A73FC6-C811-404D-86DB-A2BA474FC76E::net8.0::PlaywrightTests.SearchFeatureTests.ShouldSortFeedItems&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::47A73FC6-C811-404D-86DB-A2BA474FC76E::net8.0::PlaywrightTests.SearchFeatureTests.ShouldDisplayAltTextWhenImagesAreNotLoaded&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
