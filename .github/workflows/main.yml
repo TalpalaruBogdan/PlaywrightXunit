@@ -16,11 +16,7 @@ jobs:
         dotnet-version: 8.0.x
     - name: Build & Install
       run: dotnet build
-    - name: Change location
-      run: cd /home/runner/work/PlaywrightXunit/PlaywrightXunit/PlaywrightTests/bin/
-    - name: Display files
-      run: dir
     - name: Ensure browsers are installed
-      run: pwsh playwright.ps1 install --with-deps
+      run: pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
     - name: Run your tests
       run: dotnet test
