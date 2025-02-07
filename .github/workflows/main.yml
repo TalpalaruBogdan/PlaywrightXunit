@@ -19,7 +19,7 @@ jobs:
     - name: Change location
       run: cd PlaywrightTests/bin/Debug/net8.0
     - name: Display files
-      run: dir
+      run: pwd
     - name: Ensure browsers are installed
       run: pwsh playwright.ps1 install --with-deps
     - name: Run your tests
