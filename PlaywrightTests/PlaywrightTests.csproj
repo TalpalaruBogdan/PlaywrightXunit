@@ -33,10 +33,4 @@
       </None>
     </ItemGroup>
 
-    <ItemGroup>
-      <Content Include=".github\workflows\playwright.yml">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Content>
-    </ItemGroup>
-
 </Project>
