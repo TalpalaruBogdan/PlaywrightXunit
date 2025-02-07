@@ -11,11 +11,11 @@ public class SortComponent
      public SortComponent(IPage page)
      {
           this._page = page;
-     }
+     }    
 
      public async Task SetSortOrder(string option)
      {
-          await _orderSelect.SelectOptionAsync(new[] { option });
+          await _orderSelect.SelectOptionAsync(option);
      }
      
 }

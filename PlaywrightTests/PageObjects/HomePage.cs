@@ -18,7 +18,7 @@ public class HomePage
                {
                     await _page.GotoAsync(ConfigurationProvider.ConfigurationBase.TestData.BaseUrl);
                }, x => x.Status.Equals(200) 
-                       && x.Url.Contains($"{ConfigurationProvider.ConfigurationBase.TestData.BaseUrl}/products?between=price,1,100&page=1")
+                       && x.Url.Contains("products")
                );
      }
 }

@@ -2,19 +2,14 @@ using Microsoft.Playwright;
 using PlaywrightTests.Configurations;
 using PlaywrightTests.Fixtures;
 using PlaywrightTests.PageObjects;
+using Xunit.Abstractions;
 
 namespace PlaywrightTests;
 
-public class SearchFeatureTests : IClassFixture<PlaywrightFactory>
+public class SearchFeatureTests : TestBase, IClassFixture<PlaywrightFactory>
 {
-     private readonly PlaywrightFactory _playwrightFactory;
-     private readonly SearchFieldComponent _searchFieldComponent;
-     private readonly SearchResultsComponent _mainSearchResultsComponent;
-     private readonly SortComponent _sortComponent;
-     private readonly CardFeedComponent _feedComponent;
-     private IPage _page;
 
-     public SearchFeatureTests(PlaywrightFactory playwrightFactory)
+     public SearchFeatureTests(PlaywrightFactory playwrightFactory, ITestOutputHelper output)
      {
           this._playwrightFactory = 
                playwrightFactory;
@@ -23,13 +18,16 @@ public class SearchFeatureTests : IClassFixture<PlaywrightFactory>
           _mainSearchResultsComponent = new SearchResultsComponent(_page);
           _sortComponent = new SortComponent(_page);
           _feedComponent = new CardFeedComponent(_page);
+          _homePage = new HomePage(_page);
+          _output = output;
+          _page.Request += (_, request) => _output.WriteLine(request.Method + " " + request.Url);
      }
-
 
      [Fact]
      public async Task ShouldSortFeedItems()
      {
-          await _page.GotoAsync(ConfigurationProvider.ConfigurationBase.TestData.BaseUrl);
+          
+          await _homePage.NavigateToAsync();
 
           await _sortComponent.SetSortOrder("Name (A - Z)");
 
@@ -43,8 +41,8 @@ public class SearchFeatureTests : IClassFixture<PlaywrightFactory>
      //[ClassData(nameof(SearchDataFixture)]
      public async Task ShouldDisplayResultsForValidSearch(string searchTerm)
      {
-          await _page.GotoAsync(ConfigurationProvider.ConfigurationBase.TestData.BaseUrl);
-
+          await _homePage.NavigateToAsync();
+          
           await _searchFieldComponent.SearchForTermAsync(searchTerm);
           
           var searchResultMessage = await _mainSearchResultsComponent.GetSearchTextCaption();
@@ -55,6 +53,23 @@ public class SearchFeatureTests : IClassFixture<PlaywrightFactory>
           // });
           
           Assert.Equal($"Searched for: {searchTerm}", searchResultMessage);
+     }
+
+     [Fact]
+     public async Task ShouldDisplayAltTextWhenImagesAreNotLoaded()
+     {
+          _page.RouteAsync("**/*", async route =>
+          {
+               if (route.Request.Url.Contains("avif"))
+               {
+                    await route.AbortAsync();
+               }
+               else await route.ContinueAsync();
+          });
+          
+          await _homePage.NavigateToAsync();
+          
+
      }
 
      public static IEnumerable<object[]> searchTerms()
