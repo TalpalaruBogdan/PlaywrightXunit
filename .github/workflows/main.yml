@@ -16,9 +16,9 @@ jobs:
         dotnet-version: 8.0.x
     - name: Build & Install
       run: dotnet build
-    - name: get location
-      run: dir
+    - name: Change location
+      run: cd bin/Debug/net8.0
     - name: Ensure browsers are installed
-      run: pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
+      run: pwsh ./playwright.ps1 install --with-deps
     - name: Run your tests
       run: dotnet test
