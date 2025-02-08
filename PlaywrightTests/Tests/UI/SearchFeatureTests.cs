@@ -1,4 +1,5 @@
 using Microsoft.Playwright;
+using NaughtyStrings;
 using PlaywrightTests.Fixtures;
 using PlaywrightTests.Mocks;
 using PlaywrightTests.PageObjects;
@@ -45,6 +46,19 @@ public class SearchFeatureTests : UITestBase, IClassFixture<PlaywrightFactory>
                });
      }
      
+     // [Theory]
+     // [MemberData(nameof(bogusStrings))]
+     // public async Task ShouldReturnNoResultsForNaughtyStrings(string searchTerm)
+     // {
+     //      await _homePage.NavigateToAsync();
+     //      
+     //      await _searchFieldComponent.SearchForTermAsync(searchTerm);
+     //      
+     //      var searchResultMessage = await _mainSearchResultsComponent.GetSearchTextCaption();
+     //      
+     //      Assert.Equal($"Searched for: {searchTerm}", searchResultMessage);
+     // }
+     
      [Theory(DisplayName = "Should display results for valid search")]
      [MemberData(nameof(searchTerms))]
      public async Task ShouldDisplayResultsForValidSearch(string searchTerm)
@@ -80,5 +94,13 @@ public class SearchFeatureTests : UITestBase, IClassFixture<PlaywrightFactory>
      {
           yield return ["pliers"];
           yield return ["cutters"];
+     }
+     
+     public static IEnumerable<object[]> bogusStrings()
+     {
+          foreach (var item in TheNaughtyStrings.Humaninjection)
+          {
+               yield return [item];
+          }
      }
 }
