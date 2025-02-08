@@ -1,12 +1,13 @@
 using Microsoft.Playwright;
-using PlaywrightTests.Configurations;
 using PlaywrightTests.Fixtures;
+using PlaywrightTests.Mocks;
 using PlaywrightTests.PageObjects;
+using Polly;
 using Xunit.Abstractions;
 
 namespace PlaywrightTests;
 
-public class SearchFeatureTests : TestBase, IClassFixture<PlaywrightFactory>
+public class SearchFeatureTests : UITestBase, IClassFixture<PlaywrightFactory>
 {
 
      public SearchFeatureTests(PlaywrightFactory playwrightFactory, ITestOutputHelper output)
@@ -26,19 +27,26 @@ public class SearchFeatureTests : TestBase, IClassFixture<PlaywrightFactory>
      [Fact]
      public async Task ShouldSortFeedItems()
      {
-          
           await _homePage.NavigateToAsync();
 
-          await _sortComponent.SetSortOrder("Name (A - Z)");
-
-          var firstCardText = (await _feedComponent.GetProductNames()).FirstOrDefault();
+          await _page.RunAndWaitForResponseAsync(async () =>
+          {
+               await _sortComponent.SetSortOrder("Name (A - Z)");
+          }, 
+               response => response.Url.Contains("products?sort=name,asc&between=price,1,100&page=0"));
           
-          Assert.Equal("Adjustable Wrench", firstCardText.Trim());
+          await Polly.Policy
+               .Handle<Exception>()
+               .WaitAndRetryAsync(3, attempt  => TimeSpan.FromSeconds(3))
+               .ExecuteAsync( async () =>
+               {          
+                    var firstCard = await _feedComponent.GetProductNames();
+                    Assert.Equal("Adjustable Wrench", firstCard.First().Trim());
+               });
      }
      
      [Theory(DisplayName = "Should display results for valid search")]
      [MemberData(nameof(searchTerms))]
-     //[ClassData(nameof(SearchDataFixture)]
      public async Task ShouldDisplayResultsForValidSearch(string searchTerm)
      {
           await _homePage.NavigateToAsync();
@@ -46,17 +54,12 @@ public class SearchFeatureTests : TestBase, IClassFixture<PlaywrightFactory>
           await _searchFieldComponent.SearchForTermAsync(searchTerm);
           
           var searchResultMessage = await _mainSearchResultsComponent.GetSearchTextCaption();
-
-          // await _page.ScreenshotAsync(new PageScreenshotOptions()
-          // {
-          //      Path = "../../../Screenshots/search-results.png"
-          // });
           
           Assert.Equal($"Searched for: {searchTerm}", searchResultMessage);
      }
 
      [Fact]
-     public async Task ShouldDisplayAltTextWhenImagesAreNotLoaded()
+     public async Task ShouldLoadPageWhenImageResourcesUnavailable()
      {
           _page.RouteAsync("**/*", async route =>
           {
@@ -68,8 +71,9 @@ public class SearchFeatureTests : TestBase, IClassFixture<PlaywrightFactory>
           });
           
           await _homePage.NavigateToAsync();
-          
 
+          int cardsDisplayed = await _mainSearchResultsComponent.GetCardsCount();
+          Assert.True(cardsDisplayed > 0);
      }
 
      public static IEnumerable<object[]> searchTerms()
@@ -77,5 +81,4 @@ public class SearchFeatureTests : TestBase, IClassFixture<PlaywrightFactory>
           yield return ["pliers"];
           yield return ["cutters"];
      }
-     
 }

@@ -6,6 +6,8 @@ public class SearchResultsComponent
 {
      private IPage _page;
      private ILocator _searchTextCaption => _page.Locator("[data-test=search-caption]");
+
+     private ILocator _card => _page.Locator(".card");
      
      public SearchResultsComponent(IPage page)
      {
@@ -13,4 +15,6 @@ public class SearchResultsComponent
      }
      
      public async Task<string> GetSearchTextCaption() => await _searchTextCaption.TextContentAsync();
+
+     public async Task<int> GetCardsCount() => await _card.CountAsync();
 }

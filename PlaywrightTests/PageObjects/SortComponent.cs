@@ -5,8 +5,6 @@ namespace PlaywrightTests.PageObjects;
 public class SortComponent
 {
      private IPage _page;
-
-     private ILocator _orderSelect => _page.Locator("[data-test=sort]");
      
      public SortComponent(IPage page)
      {
@@ -15,7 +13,7 @@ public class SortComponent
 
      public async Task SetSortOrder(string option)
      {
-          await _orderSelect.SelectOptionAsync(option);
+          await _page.Locator("[data-test=sort]").SelectOptionAsync(option);
      }
      
 }
