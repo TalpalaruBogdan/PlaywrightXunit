@@ -5,7 +5,7 @@ using Xunit.Abstractions;
 
 namespace PlaywrightTests;
 
-public class UITestBase
+public class TestBase
 {
      protected PlaywrightFactory _playwrightFactory;
      protected SearchFieldComponent _searchFieldComponent;
@@ -14,5 +14,6 @@ public class UITestBase
      protected CardFeedComponent _feedComponent;
      protected HomePage _homePage;
      protected IPage _page;
+     protected IPlaywright _playwright;
      protected ITestOutputHelper _output;
 }

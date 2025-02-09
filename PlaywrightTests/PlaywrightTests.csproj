@@ -27,7 +27,6 @@
 
     <ItemGroup>
       <Folder Include="Screenshots\" />
-      <Folder Include="Tests\Api\" />
     </ItemGroup>
 
     <ItemGroup>

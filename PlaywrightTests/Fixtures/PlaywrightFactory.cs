@@ -6,14 +6,17 @@ namespace PlaywrightTests.Fixtures;
 public class PlaywrightFactory : IAsyncLifetime
 {
      
-     private IPlaywright? _playwright;
-     private IBrowser? _browser;
+     public IPlaywright? PlayWright;
+
+     public IBrowserContext BrowserContext { get; private set; }
      
+     public IBrowser Browser { get; private set; }
+
      public IPage Page { get; private set; }
 
      public async Task InitializeAsync()
      {
-          _playwright = await Playwright.CreateAsync();
+          this.PlayWright = await Playwright.CreateAsync();
           var options = new BrowserTypeLaunchOptions()
           {
                Headless = ConfigurationProvider.ConfigurationBase.BrowserConfig.Headless,
@@ -22,23 +25,23 @@ public class PlaywrightFactory : IAsyncLifetime
                Channel = ConfigurationProvider.ConfigurationBase.BrowserConfig.Channel
           };
 
-          _browser = ConfigurationProvider.ConfigurationBase.BrowserConfig.Browser switch
+          Browser = ConfigurationProvider.ConfigurationBase.BrowserConfig.Browser switch
           {
-               "chrome" => await _playwright.Chromium.LaunchAsync(options),
-               "firefox" => await _playwright.Firefox.LaunchAsync(options),
-               "edge" => await _playwright.Chromium.LaunchAsync(options),
-               _ => await _playwright.Chromium.LaunchAsync(options),
+               "chrome" => await PlayWright.Chromium.LaunchAsync(options),
+               "firefox" => await PlayWright.Firefox.LaunchAsync(options),
+               "edge" => await PlayWright.Chromium.LaunchAsync(options),
+               _ => await PlayWright.Chromium.LaunchAsync(options),
           };
           
-          Page = await _browser.NewPageAsync();  
+          Page = await Browser.NewPageAsync();  
      }
 
      async Task IAsyncLifetime.DisposeAsync()
      {
-          if (_playwright is IAsyncDisposable playwrightAsyncDisposable)
+          if (PlayWright is IAsyncDisposable playwrightAsyncDisposable)
                await playwrightAsyncDisposable.DisposeAsync();
           else
-               _playwright?.Dispose();
-          await _browser!.DisposeAsync();
+               PlayWright?.Dispose();
+          await Browser!.DisposeAsync();
      }
 }

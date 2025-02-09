@@ -3,11 +3,18 @@
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AIPage_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003FAppData_003FRoaming_003FJetBrains_003FRider2024_002E3_003Fresharper_002Dhost_003FSourcesCache_003F81271c3c4d42ed85a4a179f99d17a56c2f96d79d4fb3bf4ab2334701049475_003FIPage_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003APageRunAndWaitForRequestFinishedOptions_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003FAppData_003FRoaming_003FJetBrains_003FRider2024_002E3_003Fresharper_002Dhost_003FSourcesCache_003F85151ff846ba4f7891e7b631e272a03abdc13dde69204bf3f491426c27749e2d_003FPageRunAndWaitForRequestFinishedOptions_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ATargetClosedException_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003FAppData_003FRoaming_003FJetBrains_003FRider2024_002E3_003Fresharper_002Dhost_003FSourcesCache_003Fa5cd23b8b8fe7d2468fbcf5163b91ead968fba29c89a6e0b6c2b747aea22960_003FTargetClosedException_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=badfebde_002D7528_002D4f4c_002D894d_002D2e140c1c3fe1/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Shoudl display results for valid search" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=61bd901f_002D257a_002D4b4c_002Db1c9_002D54bfc37778b8/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="ShouldGetPosts" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::47A73FC6-C811-404D-86DB-A2BA474FC76E::net8.0::PlaywrightTests.Tests.Api.JsonPlaceholderApiTests.ShouldGetPosts&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::47A73FC6-C811-404D-86DB-A2BA474FC76E::net8.0::PlaywrightTests.Tests.Api.JsonPlaceholderApiTests.ShouldCreatePosts&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=badfebde_002D7528_002D4f4c_002D894d_002D2e140c1c3fe1/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Shoudl display results for valid search" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::47A73FC6-C811-404D-86DB-A2BA474FC76E::net8.0::PlaywrightTests.SearchFeatureTests.ShouldDisplayResultsForValidSearch&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::47A73FC6-C811-404D-86DB-A2BA474FC76E::net8.0::PlaywrightTests.SearchFeatureTests.ShouldSortFeedItems&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::47A73FC6-C811-404D-86DB-A2BA474FC76E::net8.0::PlaywrightTests.SearchFeatureTests.ShouldDisplayAltTextWhenImagesAreNotLoaded&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::47A73FC6-C811-404D-86DB-A2BA474FC76E::net8.0::PlaywrightTests.SearchFeatureTests.ShouldReturnNoResultsForNaughtyStrings&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::47A73FC6-C811-404D-86DB-A2BA474FC76E::net8.0::PlaywrightTests.Tests.Api.JsonPlaceholderApiTests.ShouldGetPosts&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

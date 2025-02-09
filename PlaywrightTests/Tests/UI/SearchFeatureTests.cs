@@ -8,7 +8,7 @@ using Xunit.Abstractions;
 
 namespace PlaywrightTests;
 
-public class SearchFeatureTests : UITestBase, IClassFixture<PlaywrightFactory>
+public class SearchFeatureTests : TestBase, IClassFixture<PlaywrightFactory>
 {
 
      public SearchFeatureTests(PlaywrightFactory playwrightFactory, ITestOutputHelper output)
